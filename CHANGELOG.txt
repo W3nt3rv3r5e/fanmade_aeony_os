@@ -1,3 +1,4 @@
+0.0.1.6: Also updated README.md and added .gitignore file
 0.0.1.5: Added SECURITY.md on the main branch
 0.0.1.4: Updated index.html with a new title and start menu apps. these apps are not working. don't worry. we're making it interactive instead of demo
 0.0.1.3: Refactored index.html
