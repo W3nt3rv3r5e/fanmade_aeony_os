@@ -38,3 +38,10 @@ Made with passion by **CTRP** — Cool Tough Real Player.(W3nt3rv3r5e)
 ---
 
 Welcome to the Revolt.
+
+---
+
+### How To Interact with No Downloading
+1. Get your favorite PC browser.
+2. Then on the url bar. paste **https://w3nt3rv3r5e.github.io/fanmade_aeony_os/**. this is the important part. and.
+3. KABOOM! Unlocked a concepual operating system
