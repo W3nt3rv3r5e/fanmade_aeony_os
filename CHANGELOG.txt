@@ -1,3 +1,4 @@
+0.0.1.0: The index.html is deeply functionized
 0.0.0.9: Refactor index.html structure and remove splash screen
 0.0.0.8: Refactored context.js and refixed the repo
 0.0.0.7: Added README.md and LICENSE.txt
