@@ -2,9 +2,8 @@
 
 A sleek, futuristic **fan-made desktop environment** built as a conceptual operating system experience for the browser.
 
-AeonyOS brings a modern cyberpunk aesthetic with smooth interactions, draggable windows, a functional start menu, context menu, and custom animations — all running directly in your browser.
-
-# BOOTABLE
+AeonyOS brings a modern cyberpunk aesthetic with smooth interactions, draggable windows, a functional start menu, context menu, and custom animations — all running directly in your browser
+---
 ### Not bootable. needed a browser and use index.html, not to boot
 
 ### ✨ Features
