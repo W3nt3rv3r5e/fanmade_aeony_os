@@ -2,46 +2,55 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AeonyOS - Zenith</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body id="desktop">
-    <div id="boot-splash">
-        <div class="splash-content">
-            <h1 class="logo-text">ZENITH</h1>
-            <div class="loading-bar"><div class="progress"></div></div>
-            <p class="status">INITIALIZING SYSTEM...</p>
-        </div>
-    </div>
+    
+    <!-- Favicon Link -->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-    <div id="context-menu" class="hidden">
-        <div class="menu-item">View</div>
-        <div class="menu-item">Sort by</div>
-        <div class="menu-item separator">Refresh</div>
-        <div class="menu-item" onclick="openTerminal()">Open in Terminal</div>
-        <div class="menu-item">Personalize</div>
+    
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* [TOP POSITION] - Global High-Performance Reset */
+        * {
+            cursor: url("cursor.svg"), auto !important; /* Moga Cursor */
+            border-radius: 0px !important; /* Sharp Industrial Style */
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0a0015; /* Deep Background */
+            color: #9d00ff; /* Neon Violet */
+            font-family: 'Segoe UI', sans-serif;
+            overflow: hidden;
+        }
+
+        #site-disclaimer {
+            position: fixed;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+            font-size: 10px;
+            color: rgba(157, 0, 255, 0.5);
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main OS Component Mount Point -->
+    <div id="root"></div>
+
+    <!-- Legal Disclaimer Footer -->
+    <div id="site-disclaimer">
+        CONCEPTUAL FAN-MADE PROJECT. UNAUTHORIZED RE-UPLOADS SUBJECT TO TAKEDOWN REQUESTS.
     </div>
 
-    <div id="taskbar">
-        <div class="start-btn">A</div>
-    </div>
+    <!-- System Assets -->
+    <audio id="startup-sound" src="sounds/startup.mp3"></audio>
 
-    <script src="components/Context.js"></script>
-    <script src="script.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const splash = document.getElementById('boot-splash');
-            
-            // Wait for the 2.5s progress bar animation, then fade out
-            setTimeout(() => {
-                splash.style.opacity = '0';
-                splash.style.pointerEvents = 'none'; // Allows clicking the desktop through the splash
-                
-                setTimeout(() => {
-                    splash.style.display = 'none';
-                }, 800);
-            }, 2600); 
-        });
-    </script>
+    <!-- Load Modular Logic -->
+    <script src="src/components/AeonyOS.jsx"></script>
 </body>
 </html>
