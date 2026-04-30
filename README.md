@@ -25,3 +25,13 @@ To run the environment on your local system:
 
 ## License
 Licensed under the MIT License. See `LICENSE.txt` for full details.
+
+---
+
+## **Project Nature:**
+
+AeonyOS is a conceptual, fan-made interface and digital art project. It is not a functional operating system kernel and is not intended to simulate "fake" software for deceptive purposes.
+
+Anti-Fraud Notice: This repository and website are the only official distributions. Any unauthorized re-uploads found on other domains will be subject to immediate takedown requests.
+
+Content Warning: While the environment may feature industrial or "hacker" aesthetics, all code is fictional
