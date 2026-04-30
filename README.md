@@ -1,37 +1,41 @@
-# AeonyOS: Zenith
+# ⚡ AeonyOS: Zenith
 
-**AeonyOS** is a **conceptual and fan-made operating system environment** developed as part of the W3NT3RV3R5E It is designed with a sharp industrial aesthetic, utilizing a Neon Violet color profile and high-performance architecture.
+A sleek, futuristic **fan-made desktop environment** built as a conceptual operating system experience for the browser.
 
-## ⚠️ Important Disclaimer
-* **Nature of Project:** This is a **conceptual/fan-made** interface. It is neither a "fake" OS intended to deceive nor a "real" kernel-level operating system.
-* **Fraud & Re-uploads:** Any unauthorized re-uploads or distributions of this project by third parties or frauds will be met with a **takedown request**. The project remains the property of the Architect.
+AeonyOS brings a modern cyberpunk aesthetic with smooth interactions, draggable windows, a functional start menu, context menu, and custom animations — all running directly in your browser.
 
-## Not a fraud. not affilated with any companies
+# BOOTABLE
+### Not bootable. needed a browser and use index.html, not to boot
 
-## 🚀 How to Install
-To run the environment on your local system:
-1.  Navigate to the repository header.
-2.  Click the green **"<> Code"** button.
-3.  Select **"Download ZIP"** from the dropdown menu.
-4.  Extract the ZIP contents into a dedicated folder[cite: 1].
-5.  Start on index.html
+### ✨ Features
 
-## Key Features
-* **Industrial Design:** Sharp corners (0px radius) and modern high-contrast UI.
-* **Moga Cursor:** Custom rodless triangle cursor (White outer/Black inner).
-* **Zenith Boot Sequence:** Integrated splash screen with `startup.mp3` audio.
+- Animated neon-violet cyberpunk wallpaper
+- Draggable and minimizable windows
+- Working Start Menu with app launcher
+- Right-click Context Menu
+- Custom rodless "Moga" cursor
+- Double-click "BOOM!" celebration effect
+- Modular and clean codebase
+
+### 🚀 How to Run
+
+1. Download the repository as ZIP
+2. Extract the files to any folder
+3. Open `index.html` in your favorite browser
+
+**No installation required.**
+
+### 🎨 Design Philosophy
+
+AeonyOS was designed with a sharp industrial look, heavy use of neon violet accents, and a focus on clean, responsive interactions. It aims to feel premium, fast, and immersive — like a window into a near-future operating system.
+
+### ⚠️ Important Note
+
+AeonyOS is a **fan-made conceptual project** created purely for fun and learning.  
+It is **not** a real operating system and has no affiliation with any existing OS (Windows, Linux, macOS, etc.).
+
+Made with passion by **CTRP** — Cool Tough Real Player.(W3nt3rv3r5e)
 
 ---
 
-## License
-Licensed under the MIT License. See `LICENSE.txt` for full details.
-
----
-
-## **Project Nature:**
-
-AeonyOS is a conceptual, fan-made interface and digital art project. It is not a functional operating system kernel and is not intended to simulate "fake" software for deceptive purposes.
-
-Anti-Fraud Notice: This repository and website are the only official distributions. Any unauthorized re-uploads found on other domains will be subject to immediate takedown requests.
-
-Content Warning: While the environment may feature industrial or "hacker" aesthetics, all code is fictional
+Welcome to the Revolt.
