@@ -14,7 +14,7 @@ To run the environment on your local system:
 2.  Click the green **"<> Code"** button.
 3.  Select **"Download ZIP"** from the dropdown menu.
 4.  Extract the ZIP contents into a dedicated folder[cite: 1].
-5.  Launch **AeonyOS.hta** (Standalone) or run the **AeonyOS.jsx** component via your React build.
+5.  Start on index.html
 
 ## Key Features
 * **Industrial Design:** Sharp corners (0px radius) and modern high-contrast UI.
