@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AeonyOS - Zenith</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body id="desktop">
+    <div id="boot-splash">
+        <div class="splash-content">
+            <h1 class="logo-text">ZENITH</h1>
+            <div class="loading-bar"><div class="progress"></div></div>
+            <p class="status">INITIALIZING SYSTEM...</p>
+        </div>
+    </div>
+
+    <div id="context-menu" class="hidden">
+        <div class="menu-item">View</div>
+        <div class="menu-item">Sort by</div>
+        <div class="menu-item separator">Refresh</div>
+        <div class="menu-item" onclick="openTerminal()">Open in Terminal</div>
+        <div class="menu-item">Personalize</div>
+    </div>
+
+    <div id="taskbar">
+        <div class="start-btn">A</div>
+    </div>
+
+    <script src="components/Context.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const splash = document.getElementById('boot-splash');
+            
+            // Wait for the 2.5s progress bar animation, then fade out
+            setTimeout(() => {
+                splash.style.opacity = '0';
+                splash.style.pointerEvents = 'none'; // Allows clicking the desktop through the splash
+                
+                setTimeout(() => {
+                    splash.style.display = 'none';
+                }, 800);
+            }, 2600); 
+        });
+    </script>
+</body>
+</html>
