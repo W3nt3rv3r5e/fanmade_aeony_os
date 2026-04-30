@@ -1,10 +1,12 @@
 # AeonyOS: Zenith
 
-**AeonyOS** is a **conceptual and fan-made operating system environment** developed as part of the Colossal Universe digital ecosystem. It is designed with a sharp industrial aesthetic, utilizing a Neon Violet color profile and high-performance architecture.
+**AeonyOS** is a **conceptual and fan-made operating system environment** developed as part of the W3NT3RV3R5E It is designed with a sharp industrial aesthetic, utilizing a Neon Violet color profile and high-performance architecture.
 
 ## ⚠️ Important Disclaimer
 * **Nature of Project:** This is a **conceptual/fan-made** interface. It is neither a "fake" OS intended to deceive nor a "real" kernel-level operating system.
 * **Fraud & Re-uploads:** Any unauthorized re-uploads or distributions of this project by third parties or frauds will be met with a **takedown request**. The project remains the property of the Architect.
+
+## Not a fraud. not affilated with any companies
 
 ## 🚀 How to Install
 To run the environment on your local system:
