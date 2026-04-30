@@ -1,8 +1,8 @@
+0.0.0.8: Refactored context.js and refixed the repo
 0.0.0.7: Added README.md and LICENSE.txt
 0.0.0.6: Removed components because not sure. new updates are coming to get more files
 0.0.0.5: Removed startup and sounds folder because of the bug
 0.0.0.4: Added a custom startup sound effect to feel uniquer on the sounds/ folder called startup.mp3
 0.0.0.3: Added a file type for the part of the ecosystem that's fanmade operating system. introducing... .jsx!
 0.0.0.2: Updating some commands of style.css, and a little upgrade to index.html, also added a moga cursor thats centered. not left or right
-0.0.0.1: Added more components and system files
-0.0.0.0: Nothing but CHANGELOG.txt was there
+0.0.0.1: Added more components and system files. Nothing but CHANGELOG.txt was there on 0.0.0.0
