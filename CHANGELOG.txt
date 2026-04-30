@@ -1,3 +1,4 @@
+0.0.1.3: Refactored index.html
 0.0.1.2: Removed the old one. replaced with new code on readme.md because too defensive
 0.0.1.1: Added a new file type, introducing .ico! the part of the fan-made operating system for more uniqueness feeling
 0.0.1.0: The index.html is deeply functionized
