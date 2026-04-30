@@ -2,55 +2,161 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AeonyOS - Zenith</title>
-    
-    <!-- Favicon Link -->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-    
-    <link rel="stylesheet" href="style.css">
     <style>
-        /* [TOP POSITION] - Global High-Performance Reset */
+        /* [TOP POSITION] - Industrial Aesthetic & Moga Cursor */
         * {
-            cursor: url("cursor.svg"), auto !important; /* Moga Cursor */
-            border-radius: 0px !important; /* Sharp Industrial Style */
+            cursor: url("cursor.svg"), auto !important;
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            user-select: none;
         }
 
         body {
             background-color: #0a0015; /* Deep Background */
             color: #9d00ff; /* Neon Violet */
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            height: 100vh;
+            width: 100vw;
             overflow: hidden;
         }
 
-        #site-disclaimer {
+        /* Taskbar Styling */
+        #taskbar {
             position: fixed;
-            bottom: 10px;
+            bottom: 0;
             width: 100%;
-            text-align: center;
-            font-size: 10px;
-            color: rgba(157, 0, 255, 0.5);
-            pointer-events: none;
+            height: 45px;
+            background: rgba(15, 0, 30, 0.95);
+            border-top: 1px solid #9d00ff;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            z-index: 1000;
+        }
+
+        #start-button {
+            width: 35px;
+            height: 35px;
+            border: 1px solid #9d00ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        #start-button:hover {
+            background: #9d00ff;
+            color: #000;
+        }
+
+        /* Start Menu */
+        #start-menu {
+            position: fixed;
+            bottom: 50px;
+            left: 10px;
+            width: 250px;
+            height: 350px;
+            background: rgba(10, 0, 20, 0.98);
+            border: 1px solid #9d00ff;
+            display: none;
+            flex-direction: column;
+            padding: 10px;
+            z-index: 1001;
+        }
+
+        .menu-item {
+            padding: 10px;
+            border-bottom: 1px solid rgba(157, 0, 255, 0.2);
+            font-size: 14px;
+        }
+
+        .menu-item:hover {
+            background: rgba(157, 0, 255, 0.2);
+        }
+
+        /* Context Menu */
+        #context-menu {
+            position: absolute;
+            width: 180px;
+            background: rgba(20, 0, 40, 0.98);
+            border: 1px solid #9d00ff;
+            display: none;
+            z-index: 2000;
         }
     </style>
 </head>
-<body>
+<body oncontextmenu="return showContextMenu(event);" onclick="hideElements();">
 
-    <!-- Main OS Component Mount Point -->
-    <div id="root"></div>
+    <!-- Startup Sound -->
+    <audio id="startup-sound" src="sounds/startup.mp3" preload="auto"></audio>
 
-    <!-- Legal Disclaimer Footer -->
-    <div id="site-disclaimer">
-        CONCEPTUAL FAN-MADE PROJECT. UNAUTHORIZED RE-UPLOADS SUBJECT TO TAKEDOWN REQUESTS.
+    <!-- Desktop Area -->
+    <div id="desktop" style="height: calc(100vh - 45px);">
+        <!-- Desktop icons can be added here -->
     </div>
 
-    <!-- System Assets -->
-    <audio id="startup-sound" src="sounds/startup.mp3"></audio>
+    <!-- Start Menu -->
+    <div id="start-menu">
+        <div class="menu-item">System Terminal</div>
+        <div class="menu-item">Colossal Universe Hub</div>
+        <div class="menu-item" onclick="location.reload();">Restart</div>
+        <div class="menu-item" onclick="window.close();" style="color: #ff3366; margin-top: auto;">Shutdown</div>
+    </div>
 
-    <!-- Load Modular Logic -->
-    <script src="src/components/AeonyOS.jsx"></script>
+    <!-- Context Menu -->
+    <div id="context-menu">
+        <div class="menu-item" onclick="location.reload();">Refresh</div>
+        <div class="menu-item">Personalize</div>
+        <div class="menu-item">New Project</div>
+    </div>
+
+    <!-- Taskbar -->
+    <div id="taskbar">
+        <div id="start-button" onclick="toggleStartMenu(event);">A</div>
+        <div style="margin-left: auto; font-size: 12px;" id="clock">00:00</div>
+    </div>
+
+    <script>
+        // System Logic
+        window.onload = () => {
+            const audio = document.getElementById('startup-sound');
+            audio.play().catch(() => {
+                console.log("Audio requires user interaction first.");
+            });
+            updateClock();
+            setInterval(updateClock, 1000);
+        };
+
+        function toggleStartMenu(e) {
+            e.stopPropagation();
+            const menu = document.getElementById('start-menu');
+            menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+        }
+
+        function showContextMenu(e) {
+            e.preventDefault();
+            const menu = document.getElementById('context-menu');
+            menu.style.display = 'block';
+            menu.style.left = e.pageX + 'px';
+            menu.style.top = e.pageY + 'px';
+            return false;
+        }
+
+        function hideElements() {
+            document.getElementById('start-menu').style.display = 'none';
+            document.getElementById('context-menu').style.display = 'none';
+        }
+
+        function updateClock() {
+            const now = new Date();
+            const time = now.getHours().toString().padStart(2, '0') + ":" + 
+                         now.getMinutes().toString().padStart(2, '0');
+            document.getElementById('clock').innerText = time;
+        }
+    </script>
 </body>
 </html>
