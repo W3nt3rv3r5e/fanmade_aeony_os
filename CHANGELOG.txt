@@ -1,3 +1,5 @@
+0.0.1.9: Introducing... TypeScript files!. not to rush 4,000 files and folders. Quality -> Quantity
+0.0.1.8: Added a CONTRIBUTING.md on the main branch
 0.0.1.7: Update title and theme variables in index.html and merged style.css
 0.0.1.6: Also updated README.md and added .gitignore file
 0.0.1.5: Added SECURITY.md on the main branch
