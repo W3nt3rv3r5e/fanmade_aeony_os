@@ -1,3 +1,24 @@
+/* [TOP POSITION] - Theme randomizer */
+:root {
+    --primary-color: #9d00ff; /* Default Neon Violet */
+    --bg-color: #0a0015;
+}
+
+* {
+    cursor: url("cursor.svg"), auto !important; /* Moga Cursor */
+    border-radius: 0px !important; /* Sharp industrial style */
+    transition: border-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--primary-color);
+}
+
+#taskbar, #start-menu, #context-menu {
+    border: 1px solid var(--primary-color);
+    box-shadow: 0 0 10px var(--primary-color);
+}
 /* [TOP POSITION] - Context Menu Global Overrides */
 #context-root * {
     cursor: url("cursor.svg"), auto !important; /* */
