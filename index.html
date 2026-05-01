@@ -15,7 +15,7 @@
             cursor: url("cursor.svg"), auto !important;
             margin: 0; padding: 0; box-sizing: border-box;
             user-select: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         body {
@@ -32,16 +32,16 @@
             border: 1px solid var(--primary-color);
         }
 
-        /* Gesture Pill Taskbar - No Clock */
+        /* Gesture Pill Taskbar */
         #taskbar {
             position: fixed; bottom: 20px; left: 50%;
             transform: translateX(-50%);
-            height: 50px; min-width: 120px; /* Compacted width */
+            height: 50px; min-width: 120px;
             background: rgba(10, 0, 20, 0.9);
             border: 1px solid var(--primary-color);
             display: flex; align-items: center; justify-content: center;
             padding: 0 20px; z-index: 1000;
-            border-radius: 50px !important;
+            border-radius: 100px !important;
             box-shadow: 0 10px 30px rgba(0,0,0,0.8);
         }
 
@@ -50,37 +50,37 @@
             border: 1px solid var(--primary-color);
             display: flex; justify-content: center; align-items: center;
             font-weight: bold;
-            border-radius: 50% !important;
+            border-radius: 100% !important;
         }
 
-        #start-button:hover {
-            background: var(--primary-color);
-            color: #000;
-        }
-
-        /* Start Menu - Zenith Industrial Layout */
+        /* 100% Rounded Start Menu (Circular Hub) */
         #start-menu {
             position: fixed; bottom: 85px; left: 50%;
-            transform: translateX(-50%) translateY(20px);
-            width: 400px; height: 450px;
+            transform: translateX(-50%) translateY(40px) scale(0.8);
+            width: 450px; height: 450px;
             background: var(--menu-bg);
             border: 1px solid var(--primary-color);
             display: none; flex-direction: column;
-            padding: 20px; z-index: 1001;
+            padding: 60px; z-index: 1001;
             opacity: 0;
-            border-radius: 0px !important;
+            border-radius: 100% !important; /* 100% Rounded */
+            box-shadow: 0 0 40px rgba(157, 0, 255, 0.2);
+            justify-content: center;
+            align-items: center;
+            text-align: center;
         }
 
         #start-menu.active {
             display: flex; opacity: 1;
-            transform: translateX(-50%) translateY(0);
+            transform: translateX(-50%) translateY(0) scale(1);
         }
 
-        /* Persistent Maximize State */
+        /* Maximize State (Large Rounded Rect) */
         #start-menu.maximized {
-            width: 96vw; height: 86vh;
+            width: 90vw; height: 85vh;
             bottom: 80px;
-            transform: translateX(-50%) translateY(0);
+            border-radius: 50px !important; /* Maintains rounded aesthetic */
+            transform: translateX(-50%) translateY(0) scale(1);
         }
 
         #desktop { height: 100vh; padding: 40px; display: flex; gap: 30px; }
@@ -89,7 +89,7 @@
             width: 90px; height: 95px;
             display: flex; flex-direction: column; align-items: center;
             justify-content: center; gap: 10px;
-            border: 1px solid transparent;
+            border-radius: 20px !important;
         }
 
         .desktop-icon:hover {
@@ -102,25 +102,27 @@
         .desktop-icon span { font-size: 11px; color: var(--primary-color); }
 
         .menu-header {
+            width: 100%;
             display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 15px; border-bottom: 1px solid var(--primary-color);
+            margin-bottom: 20px; border-bottom: 1px solid var(--primary-color);
             padding-bottom: 10px;
         }
 
         .admin-tag { font-size: 10px; letter-spacing: 2px; color: var(--primary-color); }
 
         .max-btn {
-            width: 20px; height: 20px; border: 1px solid var(--primary-color);
+            width: 24px; height: 24px; border: 1px solid var(--primary-color);
             cursor: pointer; display: flex; align-items: center; justify-content: center;
-            font-size: 12px; color: var(--primary-color);
-            font-weight: bold;
+            font-size: 14px; color: var(--primary-color);
+            border-radius: 100% !important;
         }
 
-        .max-btn:hover { background: var(--primary-color); color: #000; }
-
         .menu-item {
+            width: 80%;
             padding: 12px; font-size: 14px; color: var(--primary-color);
             border-bottom: 1px solid rgba(157, 0, 255, 0.1);
+            border-radius: 30px !important;
+            margin-bottom: 5px;
         }
         
         .menu-item:hover { background: var(--primary-color); color: #000; }
@@ -135,27 +137,25 @@
             <img src="https://www.google.com/favicon.ico">
             <span>Browser</span>
         </div>
-        <!-- Grok with Moon Icon -->
         <div class="desktop-icon" onclick="window.open('https://grok.com', '_blank')">
             <div class="emoji-icon">🌙</div>
             <span>Grok</span>
         </div>
     </div>
 
-    <!-- Start Menu -->
+    <!-- 100% Rounded Start Menu -->
     <div id="start-menu">
         <div class="menu-header">
-            <div class="admin-tag">LOGGED IN AS: ADMIN</div>
-            <!-- Maximize Button -->
+            <div class="admin-tag">ADMIN_ZENITH</div>
             <div class="max-btn" onclick="toggleMaximize(event)">⛶</div>
         </div>
-        <div class="menu-item" onclick="randomizeTheme()">Randomize Hex</div>
+        <div class="menu-item" onclick="randomizeTheme()">Random Theme</div>
         <div class="menu-item">Terminal.exe</div>
         <div class="menu-item">System Monitor</div>
-        <div class="menu-item" onclick="location.reload()" style="margin-top: auto;">Restart Zenith</div>
+        <div class="menu-item" onclick="location.reload()" style="border-bottom: none; margin-top: 10px; color: #ff3366;">Restart</div>
     </div>
 
-    <!-- Gesture Pill Taskbar (Purged) -->
+    <!-- Gesture Pill Taskbar -->
     <div id="taskbar">
         <div id="start-button" onclick="toggleStartMenu(event)">A</div>
     </div>
@@ -179,21 +179,16 @@
         // Core UI Control
         function toggleStartMenu(e) {
             e.stopPropagation();
-            const menu = document.getElementById('start-menu');
-            menu.classList.toggle('active');
+            document.getElementById('start-menu').classList.toggle('active');
         }
 
         function toggleMaximize(e) {
             e.stopPropagation();
-            const menu = document.getElementById('start-menu');
-            // Toggles maximized state without closing the menu
-            menu.classList.toggle('maximized');
+            document.getElementById('start-menu').classList.toggle('maximized');
         }
 
         function hideElements() {
             const menu = document.getElementById('start-menu');
-            // Only hide if the click is outside and menu isn't locked in maximized state
-            // (Standard behavior: clicking desktop hides the menu)
             menu.classList.remove('active');
             menu.classList.remove('maximized');
         }
@@ -201,10 +196,8 @@
         function randomizeTheme() {
             const color = '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0');
             document.documentElement.style.setProperty('--primary-color', color);
-            console.log("Admin Theme Update: " + color);
         }
 
-        // Prevent menu from closing when clicking inside it
         document.getElementById('start-menu').onclick = (e) => e.stopPropagation();
     </script>
 </body>
