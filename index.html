@@ -2,209 +2,172 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>AeonyOS - Zenith</title>
+    <title>AeonyOS - Zenith (Admin)</title>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <style>
-        /* [TOP POSITION] - Theme Variables & Moga Cursor */
         :root {
-            --primary-color: #9d00ff; /* Neon Violet Default */
+            --primary-color: #9d00ff;
             --bg-color: #0a0015;
-            --menu-bg: rgba(20, 0, 40, 0.95);
+            --menu-bg: rgba(15, 0, 30, 0.98);
         }
 
         * {
             cursor: url("cursor.svg"), auto !important;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            user-select: none;
-            border-radius: 0px !important; /* Sharp Industrial Style */
-            transition: border-color 0.3s, color 0.3s, box-shadow 0.3s;
+            margin: 0; padding: 0; box-sizing: border-box;
+            user-select: none; border-radius: 0px !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        body, html {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            background: linear-gradient(135deg, #1a0033 0%, #000000 100%);
-            color: white;
-            font-family: 'Segoe UI', sans-serif;
+        body {
+            width: 100vw; height: 100vh; overflow: hidden;
+            background: linear-gradient(135deg, #0f0020 0%, #000000 100%);
+            color: white; font-family: 'Segoe UI', sans-serif;
         }
 
-        /* Desktop Layout */
+        /* FPS Counter - Industrial Performance Monitor */
+        #fps-counter {
+            position: fixed; top: 10px; right: 10px;
+            color: var(--primary-color); font-family: monospace;
+            font-size: 12px; z-index: 9999;
+            background: rgba(0,0,0,0.5); padding: 4px 8px;
+            border: 1px solid var(--primary-color);
+        }
+
+        /* Centered Taskbar (macOS Style Dock) */
+        #taskbar {
+            position: fixed; bottom: 15px; left: 50%;
+            transform: translateX(-50%);
+            height: 55px; min-width: 300px;
+            background: rgba(10, 0, 20, 0.85);
+            border: 1px solid var(--primary-color);
+            display: flex; align-items: center; justify-content: center;
+            padding: 0 20px; z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        #start-button {
+            width: 40px; height: 40px;
+            border: 1px solid var(--primary-color);
+            display: flex; justify-content: center; align-items: center;
+            font-weight: bold; margin-right: 15px;
+        }
+
+        /* Centered Start Menu with Animation */
+        #start-menu {
+            position: fixed; bottom: 85px; left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            width: 400px; height: 450px;
+            background: var(--menu-bg);
+            border: 1px solid var(--primary-color);
+            display: none; flex-direction: column;
+            padding: 20px; z-index: 1001;
+            opacity: 0;
+        }
+
+        #start-menu.active {
+            display: flex; opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Desktop Shortcuts */
         #desktop {
-            height: calc(100vh - 45px);
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            position: relative;
+            height: 100vh; padding: 40px;
+            display: flex; flex-direction: row; gap: 30px;
         }
 
-        /* Desktop Shortcut Styling */
         .desktop-icon {
-            width: 80px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            padding: 10px;
+            width: 90px; height: 95px;
+            display: flex; flex-direction: column; align-items: center;
+            justify-content: center; gap: 10px;
             border: 1px solid transparent;
-            transition: 0.2s;
         }
 
         .desktop-icon:hover {
             background: rgba(157, 0, 255, 0.1);
             border: 1px solid var(--primary-color);
-            box-shadow: 0 0 10px var(--primary-color);
         }
 
-        .desktop-icon img {
-            width: 32px;
-            height: 32px;
-        }
-
-        .desktop-icon span {
-            font-size: 11px;
-            text-align: center;
-            color: var(--primary-color);
-        }
-
-        /* UI Components: Taskbar, Menu, Context */
-        #taskbar {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            height: 45px;
-            background: rgba(0, 0, 0, 0.85);
-            border-top: 1px solid var(--primary-color);
-            display: flex;
-            align-items: center;
-            padding: 0 10px;
-            z-index: 1000;
-        }
-
-        #start-menu, #context-menu {
-            position: absolute;
-            background: var(--menu-bg);
-            border: 1px solid var(--primary-color);
-            z-index: 2000;
-            box-shadow: 0 0 15px rgba(157, 0, 255, 0.3);
-        }
-
-        #start-menu {
-            bottom: 50px;
-            left: 10px;
-            width: 250px;
-            height: 350px;
-            display: none;
-            flex-direction: column;
-            padding: 10px;
-        }
-
-        #context-menu {
-            width: 180px;
-            display: none;
-        }
+        .desktop-icon img { width: 32px; height: 32px; }
+        .desktop-icon span { font-size: 11px; color: var(--primary-color); }
 
         .menu-item {
-            padding: 10px 15px;
-            font-size: 13px;
-            color: var(--primary-color);
-            border-bottom: 1px solid rgba(157, 0, 255, 0.2);
+            padding: 12px; font-size: 14px; color: var(--primary-color);
+            border-bottom: 1px solid rgba(157, 0, 255, 0.1);
         }
+        
+        .menu-item:hover { background: var(--primary-color); color: #000; }
 
-        .menu-item:hover {
-            background: var(--primary-color);
-            color: #000;
-        }
-
-        #start-button {
-            width: 35px;
-            height: 35px;
-            border: 1px solid var(--primary-color);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: bold;
+        .admin-tag {
+            font-size: 10px; letter-spacing: 2px;
+            color: var(--primary-color); margin-bottom: 15px;
+            border-bottom: 1px solid var(--primary-color);
+            padding-bottom: 5px;
         }
     </style>
 </head>
 <body oncontextmenu="return showContextMenu(event);" onclick="hideElements();">
 
-    <!-- Startup Sound -->
-    <audio id="startup-sound" src="sounds/startup.mp3" preload="auto"></audio>
+    <div id="fps-counter">FPS: 60</div>
 
-    <!-- Desktop Area -->
     <div id="desktop">
-        <!-- Web Browser Shortcut -->
-        <div class="desktop-icon" onclick="openBrowser();">
-            <img src="https://www.google.com/favicon.ico" alt="Browser">
-            <span>Web Browser</span>
+        <div class="desktop-icon" onclick="window.open('https://google.com', '_blank')">
+            <img src="https://www.google.com/favicon.ico">
+            <span>Browser</span>
+        </div>
+        <div class="desktop-icon" onclick="window.open('https://grok.com', '_blank')">
+            <img src="https://grok.com/favicon.ico">
+            <span>Grok</span>
         </div>
     </div>
 
-    <!-- Start Menu -->
+    <!-- Centered Start Menu -->
     <div id="start-menu">
-        <div class="menu-item" onclick="randomizeTheme();" style="font-weight: bold;">Randomize Theme</div>
-        <div class="menu-item">Terminal.exe</div>
-        <div class="menu-item">File Explorer</div>
-        <div class="menu-item" onclick="location.reload();">Refresh OS</div>
-        <div class="menu-item" onclick="window.close();" style="color: #ff3366; margin-top: auto;">Shutdown</div>
+        <div class="admin-tag">LOGGED IN AS: ADMIN</div>
+        <div class="menu-item" onclick="randomizeTheme()">Randomize Hex</div>
+        <div class="menu-item">Terminal (Root)</div>
+        <div class="menu-item">Maximize Viewport</div>
+        <div class="menu-item" onclick="location.reload()" style="margin-top: auto;">Restart Zenith</div>
     </div>
 
-    <!-- Context Menu -->
-    <div id="context-menu">
-        <div class="menu-item" onclick="location.reload();">Refresh</div>
-        <div class="menu-item" onclick="randomizeTheme();">Random Theme</div>
-        <div class="menu-item">New Folder</div>
-    </div>
-
-    <!-- Taskbar -->
+    <!-- Centered Taskbar -->
     <div id="taskbar">
-        <div id="start-button" onclick="toggleStartMenu(event);">A</div>
-        <div style="margin-left: auto; font-size: 12px; color: var(--primary-color);" id="clock">00:00</div>
+        <div id="start-button" onclick="toggleStartMenu(event)">A</div>
+        <div id="clock" style="font-size: 12px; color: var(--primary-color);">00:00</div>
     </div>
 
     <script>
-        // System Theme Randomizer
-        function randomizeTheme() {
-            const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0');
-            document.documentElement.style.setProperty('--primary-color', randomColor);
-            console.log("AeonyOS Theme Updated: " + randomColor);
+        // FPS Counter Logic
+        let lastTime = performance.now();
+        let frameCount = 0;
+        let fps = 0;
+
+        function updateFPS() {
+            frameCount++;
+            const now = performance.now();
+            if (now - lastTime >= 1000) {
+                fps = frameCount;
+                document.getElementById('fps-counter').innerText = `FPS: ${fps}`;
+                frameCount = 0;
+                lastTime = now;
+            }
+            requestAnimationFrame(updateFPS);
         }
+        requestAnimationFrame(updateFPS);
 
-        // Browser Navigation
-        function openBrowser() {
-            window.location.href = "https://www.google.com";
-        }
-
-        // Core UI Logic
-        window.onload = () => {
-            const audio = document.getElementById('startup-sound');
-            audio.play().catch(() => {});
-            updateClock();
-            setInterval(updateClock, 1000);
-        };
-
+        // UI Logic
         function toggleStartMenu(e) {
             e.stopPropagation();
             const menu = document.getElementById('start-menu');
-            menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
-        }
-
-        function showContextMenu(e) {
-            e.preventDefault();
-            const menu = document.getElementById('context-menu');
-            menu.style.display = 'block';
-            menu.style.left = e.pageX + 'px';
-            menu.style.top = e.pageY + 'px';
-            return false;
+            menu.classList.toggle('active');
         }
 
         function hideElements() {
-            document.getElementById('start-menu').style.display = 'none';
-            document.getElementById('context-menu').style.display = 'none';
+            document.getElementById('start-menu').classList.remove('active');
+        }
+
+        function randomizeTheme() {
+            const color = '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0');
+            document.documentElement.style.setProperty('--primary-color', color);
         }
 
         function updateClock() {
@@ -213,6 +176,8 @@
                 now.getHours().toString().padStart(2, '0') + ":" + 
                 now.getMinutes().toString().padStart(2, '0');
         }
+        setInterval(updateClock, 1000);
+        updateClock();
     </script>
 </body>
 </html>
