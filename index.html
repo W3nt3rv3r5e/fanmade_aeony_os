@@ -5,10 +5,11 @@
     <title>AeonyOS - Zenith</title>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <style>
-        /* [TOP POSITION] - Theme Variables & Industrial Reset */
+        /* [TOP POSITION] - Theme Variables & Moga Cursor */
         :root {
             --primary-color: #9d00ff; /* Neon Violet Default */
-            --bg-dark: #0a0015;
+            --bg-color: #0a0015;
+            --menu-bg: rgba(20, 0, 40, 0.95);
         }
 
         * {
@@ -17,30 +18,105 @@
             padding: 0;
             box-sizing: border-box;
             user-select: none;
+            border-radius: 0px !important; /* Sharp Industrial Style */
             transition: border-color 0.3s, color 0.3s, box-shadow 0.3s;
         }
 
-        body {
-            background-color: var(--bg-dark);
-            color: var(--primary-color);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            height: 100vh;
-            width: 100vw;
+        body, html {
+            width: 100%;
+            height: 100%;
             overflow: hidden;
+            background: linear-gradient(135deg, #1a0033 0%, #000000 100%);
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
         }
 
-        /* Taskbar Styling */
+        /* Desktop Layout */
+        #desktop {
+            height: calc(100vh - 45px);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: relative;
+        }
+
+        /* Desktop Shortcut Styling */
+        .desktop-icon {
+            width: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding: 10px;
+            border: 1px solid transparent;
+            transition: 0.2s;
+        }
+
+        .desktop-icon:hover {
+            background: rgba(157, 0, 255, 0.1);
+            border: 1px solid var(--primary-color);
+            box-shadow: 0 0 10px var(--primary-color);
+        }
+
+        .desktop-icon img {
+            width: 32px;
+            height: 32px;
+        }
+
+        .desktop-icon span {
+            font-size: 11px;
+            text-align: center;
+            color: var(--primary-color);
+        }
+
+        /* UI Components: Taskbar, Menu, Context */
         #taskbar {
             position: fixed;
             bottom: 0;
             width: 100%;
             height: 45px;
-            background: rgba(15, 0, 30, 0.95);
+            background: rgba(0, 0, 0, 0.85);
             border-top: 1px solid var(--primary-color);
             display: flex;
             align-items: center;
             padding: 0 10px;
             z-index: 1000;
+        }
+
+        #start-menu, #context-menu {
+            position: absolute;
+            background: var(--menu-bg);
+            border: 1px solid var(--primary-color);
+            z-index: 2000;
+            box-shadow: 0 0 15px rgba(157, 0, 255, 0.3);
+        }
+
+        #start-menu {
+            bottom: 50px;
+            left: 10px;
+            width: 250px;
+            height: 350px;
+            display: none;
+            flex-direction: column;
+            padding: 10px;
+        }
+
+        #context-menu {
+            width: 180px;
+            display: none;
+        }
+
+        .menu-item {
+            padding: 10px 15px;
+            font-size: 13px;
+            color: var(--primary-color);
+            border-bottom: 1px solid rgba(157, 0, 255, 0.2);
+        }
+
+        .menu-item:hover {
+            background: var(--primary-color);
+            color: #000;
         }
 
         #start-button {
@@ -52,48 +128,6 @@
             align-items: center;
             font-weight: bold;
         }
-
-        #start-button:hover {
-            background: var(--primary-color);
-            color: #000;
-        }
-
-        /* Start Menu */
-        #start-menu {
-            position: fixed;
-            bottom: 50px;
-            left: 10px;
-            width: 250px;
-            height: 350px;
-            background: rgba(10, 0, 20, 0.98);
-            border: 1px solid var(--primary-color);
-            display: none;
-            flex-direction: column;
-            padding: 10px;
-            z-index: 1001;
-            box-shadow: 0 0 15px rgba(0,0,0,0.5);
-        }
-
-        .menu-item {
-            padding: 10px;
-            border-bottom: 1px solid rgba(157, 0, 255, 0.1);
-            font-size: 14px;
-            color: var(--primary-color);
-        }
-
-        .menu-item:hover {
-            background: rgba(157, 0, 255, 0.1);
-        }
-
-        /* Context Menu */
-        #context-menu {
-            position: absolute;
-            width: 180px;
-            background: rgba(20, 0, 40, 0.98);
-            border: 1px solid var(--primary-color);
-            display: none;
-            z-index: 2000;
-        }
     </style>
 </head>
 <body oncontextmenu="return showContextMenu(event);" onclick="hideElements();">
@@ -102,16 +136,20 @@
     <audio id="startup-sound" src="sounds/startup.mp3" preload="auto"></audio>
 
     <!-- Desktop Area -->
-    <div id="desktop" style="height: calc(100vh - 45px);"></div>
+    <div id="desktop">
+        <!-- Web Browser Shortcut -->
+        <div class="desktop-icon" onclick="openBrowser();">
+            <img src="https://www.google.com/favicon.ico" alt="Browser">
+            <span>Web Browser</span>
+        </div>
+    </div>
 
     <!-- Start Menu -->
     <div id="start-menu">
-        <div class="menu-item" onclick="randomizeTheme();" style="font-weight: bold; border-bottom: 2px solid var(--primary-color);">Randomize Theme (Hex)</div>
-        <div class="menu-item">Terminal</div>
+        <div class="menu-item" onclick="randomizeTheme();" style="font-weight: bold;">Randomize Theme</div>
+        <div class="menu-item">Terminal.exe</div>
         <div class="menu-item">File Explorer</div>
-        <div class="menu-item">Settings</div>
-        <div class="menu-item">Notepad</div>
-        <div class="menu-item" onclick="location.reload();">Restart</div>
+        <div class="menu-item" onclick="location.reload();">Refresh OS</div>
         <div class="menu-item" onclick="window.close();" style="color: #ff3366; margin-top: auto;">Shutdown</div>
     </div>
 
@@ -119,8 +157,6 @@
     <div id="context-menu">
         <div class="menu-item" onclick="location.reload();">Refresh</div>
         <div class="menu-item" onclick="randomizeTheme();">Random Theme</div>
-        <div class="menu-item">Personalize</div>
-        <div class="menu-item">New Project</div>
         <div class="menu-item">New Folder</div>
     </div>
 
@@ -131,26 +167,22 @@
     </div>
 
     <script>
-        // System Theme Logic
+        // System Theme Randomizer
         function randomizeTheme() {
-            // Generate a random 6-digit hex code
             const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0');
-            
-            // Apply to CSS Variable
             document.documentElement.style.setProperty('--primary-color', randomColor);
-            
-            // Visual confirmation on Start Button
-            const btn = document.getElementById('start-button');
-            btn.style.backgroundColor = randomColor;
-            setTimeout(() => btn.style.backgroundColor = 'transparent', 200);
-
             console.log("AeonyOS Theme Updated: " + randomColor);
         }
 
-        // System Core Logic
+        // Browser Navigation
+        function openBrowser() {
+            window.location.href = "https://www.google.com";
+        }
+
+        // Core UI Logic
         window.onload = () => {
             const audio = document.getElementById('startup-sound');
-            audio.play().catch(() => console.log("Interaction required for audio."));
+            audio.play().catch(() => {});
             updateClock();
             setInterval(updateClock, 1000);
         };
@@ -177,9 +209,9 @@
 
         function updateClock() {
             const now = new Date();
-            const time = now.getHours().toString().padStart(2, '0') + ":" + 
-                         now.getMinutes().toString().padStart(2, '0');
-            document.getElementById('clock').innerText = time;
+            document.getElementById('clock').innerText = 
+                now.getHours().toString().padStart(2, '0') + ":" + 
+                now.getMinutes().toString().padStart(2, '0');
         }
     </script>
 </body>
