@@ -178,6 +178,207 @@
         }
         setInterval(updateClock, 1000);
         updateClock();
+    </script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AeonyOS - Zenith (Admin)</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <style>
+        :root {
+            --primary-color: #9d00ff; /* Neon Violet */
+            --bg-color: #0a0015;
+            --menu-bg: rgba(15, 0, 30, 0.98);
+        }
+
+        * {
+            cursor: url("cursor.svg"), auto !important;
+            margin: 0; padding: 0; box-sizing: border-box;
+            user-select: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            width: 100vw; height: 100vh; overflow: hidden;
+            background: linear-gradient(135deg, #0f0020 0%, #000000 100%);
+            color: white; font-family: 'Segoe UI', sans-serif;
+        }
+
+        #fps-counter {
+            position: fixed; top: 10px; right: 10px;
+            color: var(--primary-color); font-family: monospace;
+            font-size: 12px; z-index: 9999;
+            background: rgba(0,0,0,0.5); padding: 4px 8px;
+            border: 1px solid var(--primary-color);
+        }
+
+        /* 100% Rounded Gesture Pill Taskbar */
+        #taskbar {
+            position: fixed; bottom: 20px; left: 50%;
+            transform: translateX(-50%);
+            height: 50px; min-width: 320px;
+            background: rgba(10, 0, 20, 0.9);
+            border: 1px solid var(--primary-color);
+            display: flex; align-items: center; justify-content: center;
+            padding: 0 25px; z-index: 1000;
+            border-radius: 50px !important; /* Gesture Pill Style */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+
+        #start-button {
+            width: 36px; height: 36px;
+            border: 1px solid var(--primary-color);
+            display: flex; justify-content: center; align-items: center;
+            font-weight: bold; margin-right: 15px;
+            border-radius: 50% !important;
+        }
+
+        /* Centered Start Menu with Industrial Sharp Corners */
+        #start-menu {
+            position: fixed; bottom: 85px; left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            width: 400px; height: 450px;
+            background: var(--menu-bg);
+            border: 1px solid var(--primary-color);
+            display: none; flex-direction: column;
+            padding: 20px; z-index: 1001;
+            opacity: 0;
+            border-radius: 0px !important; /* Maintained for Industrial feel */
+        }
+
+        #start-menu.active {
+            display: flex; opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        #start-menu.maximized {
+            width: 95vw; height: 85vh; bottom: 85px;
+        }
+
+        /* Desktop Area */
+        #desktop { height: 100vh; padding: 40px; display: flex; gap: 30px; }
+
+        .desktop-icon {
+            width: 90px; height: 95px;
+            display: flex; flex-direction: column; align-items: center;
+            justify-content: center; gap: 10px;
+            border: 1px solid transparent;
+        }
+
+        .desktop-icon:hover {
+            background: rgba(157, 0, 255, 0.1);
+            border: 1px solid var(--primary-color);
+        }
+
+        .desktop-icon .emoji-icon { font-size: 32px; }
+        .desktop-icon img { width: 32px; height: 32px; }
+        .desktop-icon span { font-size: 11px; color: var(--primary-color); }
+
+        .menu-header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 15px; border-bottom: 1px solid var(--primary-color);
+            padding-bottom: 10px;
+        }
+
+        .admin-tag { font-size: 10px; letter-spacing: 2px; color: var(--primary-color); }
+
+        /* Maximize Button Style */
+        .max-btn {
+            width: 20px; height: 20px; border: 1px solid var(--primary-color);
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            font-size: 10px; color: var(--primary-color);
+        }
+
+        .menu-item {
+            padding: 12px; font-size: 14px; color: var(--primary-color);
+            border-bottom: 1px solid rgba(157, 0, 255, 0.1);
+        }
+        
+        .menu-item:hover { background: var(--primary-color); color: #000; }
+    </style>
+</head>
+<body oncontextmenu="return showContextMenu(event);" onclick="hideElements();">
+
+    <div id="fps-counter">FPS: 60</div>
+
+    <div id="desktop">
+        <div class="desktop-icon" onclick="window.open('https://google.com', '_blank')">
+            <img src="https://www.google.com/favicon.ico">
+            <span>Browser</span>
+        </div>
+        <!-- Grok with Lunar Emoji Icon -->
+        <div class="desktop-icon" onclick="window.open('https://grok.com', '_blank')">
+            <div class="emoji-icon">🌙</div>
+            <span>Grok</span>
+        </div>
+    </div>
+
+    <!-- Centered Start Menu -->
+    <div id="start-menu" id="startMenu">
+        <div class="menu-header">
+            <div class="admin-tag">ADMIN_ACCESS</div>
+            <div class="max-btn" onclick="toggleMaximize(event)">[ ]</div>
+        </div>
+        <div class="menu-item" onclick="randomizeTheme()">Randomize Hex</div>
+        <div class="menu-item">Terminal.exe</div>
+        <div class="menu-item">System Monitor</div>
+        <div class="menu-item" onclick="location.reload()" style="margin-top: auto;">Restart Zenith</div>
+    </div>
+
+    <!-- Gesture Pill Taskbar -->
+    <div id="taskbar">
+        <div id="start-button" onclick="toggleStartMenu(event)">A</div>
+        <div id="clock" style="font-size: 12px; color: var(--primary-color);">00:00</div>
+    </div>
+
+    <script>
+        // FPS Monitoring
+        let lastTime = performance.now();
+        let frameCount = 0;
+        function updateFPS() {
+            frameCount++;
+            const now = performance.now();
+            if (now - lastTime >= 1000) {
+                document.getElementById('fps-counter').innerText = `FPS: ${frameCount}`;
+                frameCount = 0;
+                lastTime = now;
+            }
+            requestAnimationFrame(updateFPS);
+        }
+        requestAnimationFrame(updateFPS);
+
+        // Menu Control logic
+        function toggleStartMenu(e) {
+            e.stopPropagation();
+            document.getElementById('start-menu').classList.toggle('active');
+        }
+
+        function toggleMaximize(e) {
+            e.stopPropagation();
+            document.getElementById('start-menu').classList.toggle('maximized');
+        }
+
+        function hideElements() {
+            const menu = document.getElementById('start-menu');
+            menu.classList.remove('active');
+            menu.classList.remove('maximized');
+        }
+
+        function randomizeTheme() {
+            const color = '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0');
+            document.documentElement.style.setProperty('--primary-color', color);
+        }
+
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('clock').innerText = 
+                now.getHours().toString().padStart(2, '0') + ":" + 
+                now.getMinutes().toString().padStart(2, '0');
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
     </script>
+</body>
+</html>
 </body>
 </html>
