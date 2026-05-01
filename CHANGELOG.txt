@@ -1,3 +1,4 @@
+0.0.2.1: Updated index.html for more fixes. more uniqueness
 0.0.2.0: Refactored index.html and style.css for more updates
 0.0.1.9: Introducing... TypeScript files!. not to rush 4,000 files and folders. Quality -> Quantity
 0.0.1.8: Added a CONTRIBUTING.md on the main branch
