@@ -63,7 +63,7 @@
             display: none; flex-direction: column;
             padding: 60px; z-index: 1001;
             opacity: 0;
-            border-radius: 100% !important; /* 100% Rounded */
+            border-radius: 100% !important; 
             box-shadow: 0 0 40px rgba(157, 0, 255, 0.2);
             justify-content: center;
             align-items: center;
@@ -79,7 +79,7 @@
         #start-menu.maximized {
             width: 90vw; height: 85vh;
             bottom: 80px;
-            border-radius: 50px !important; /* Maintains rounded aesthetic */
+            border-radius: 50px !important;
             transform: translateX(-50%) translateY(0) scale(1);
         }
 
@@ -123,6 +123,8 @@
             border-bottom: 1px solid rgba(157, 0, 255, 0.1);
             border-radius: 30px !important;
             margin-bottom: 5px;
+            text-decoration: none;
+            display: block;
         }
         
         .menu-item:hover { background: var(--primary-color); color: #000; }
@@ -150,6 +152,10 @@
             <div class="max-btn" onclick="toggleMaximize(event)">⛶</div>
         </div>
         <div class="menu-item" onclick="randomizeTheme()">Random Theme</div>
+        
+        <!-- Changelog Integration -->
+        <a href="/CHANGELOG.txt" class="menu-item" target="_blank">changelog.txt</a>
+        
         <div class="menu-item">Terminal.exe</div>
         <div class="menu-item">System Monitor</div>
         <div class="menu-item" onclick="location.reload()" style="border-bottom: none; margin-top: 10px; color: #ff3366;">Restart</div>
@@ -161,7 +167,6 @@
     </div>
 
     <script>
-        // FPS Counter
         let lastTime = performance.now();
         let frameCount = 0;
         function updateFPS() {
@@ -176,7 +181,6 @@
         }
         requestAnimationFrame(updateFPS);
 
-        // Core UI Control
         function toggleStartMenu(e) {
             e.stopPropagation();
             document.getElementById('start-menu').classList.toggle('active');
