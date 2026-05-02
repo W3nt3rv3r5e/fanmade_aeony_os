@@ -37,8 +37,10 @@ Made with passion by **CTRP** — Cool Tough Real Player.(W3nt3rv3r5e)
 
 ---
 
-Welcome to the Revolt.
-
+Links:
+- [View the Changelog](https://github.com/W3nt3rv3r5e/fanmade_aeony_os/blob/main/CHANGELOG.txt)
+- [Support our Game Jolt](https://gamejolt.com/@wenterverse)
+- [Support our Geometry Dash](https://gdbrowser.com/u/RobertPlayz777)
 ---
 
 ### How To Interact with No Downloading
