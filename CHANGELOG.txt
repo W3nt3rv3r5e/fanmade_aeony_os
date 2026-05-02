@@ -1,3 +1,4 @@
+0.0.2.7: Replaced Changelog icon with Game Jolt link and Added Boredom Slasher update. hope this keeps flowing
 0.0.2.6: Added desktop icons and improve comments in HTML
 0.0.2.5: Added a link to README.md that's Visit this OS
 0.0.2.4: Added links to the README for Changelog and support.
