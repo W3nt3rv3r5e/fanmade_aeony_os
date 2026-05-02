@@ -11,7 +11,6 @@
             --menu-bg: rgba(15, 0, 30, 0.98);
         }
 
-        /* Essential Reset and High-Performance Transitions */
         * {
             cursor: url("cursor.svg"), auto !important;
             margin: 0; padding: 0; box-sizing: border-box;
@@ -43,7 +42,6 @@
             display: flex; align-items: center; justify-content: center;
             padding: 0 20px; z-index: 1000;
             border-radius: 100px !important;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
         }
 
         #start-button {
@@ -54,7 +52,7 @@
             border-radius: 100% !important;
         }
 
-        /* 100% Rounded Start Menu (Circular Hub) */
+        /* 100% Rounded Start Menu */
         #start-menu {
             position: fixed; bottom: 85px; left: 50%;
             transform: translateX(-50%) translateY(40px) scale(0.8);
@@ -65,7 +63,6 @@
             padding: 60px; z-index: 1001;
             opacity: 0;
             border-radius: 100% !important;
-            box-shadow: 0 0 40px rgba(157, 0, 255, 0.2);
             justify-content: center;
             align-items: center;
             text-align: center;
@@ -76,14 +73,6 @@
             transform: translateX(-50%) translateY(0) scale(1);
         }
 
-        /* Maximize State (Large Rounded Rect) */
-        #start-menu.maximized {
-            width: 90vw; height: 85vh;
-            bottom: 80px;
-            border-radius: 50px !important;
-            transform: translateX(-50%) translateY(0) scale(1);
-        }
-
         #desktop { height: 100vh; padding: 40px; display: flex; gap: 30px; }
 
         .desktop-icon {
@@ -91,9 +80,6 @@
             display: flex; flex-direction: column; align-items: center;
             justify-content: center; gap: 10px;
             border-radius: 20px !important;
-            text-decoration: none;
-            color: white;
-            cursor: pointer;
         }
 
         .desktop-icon:hover {
@@ -102,28 +88,11 @@
         }
 
         .emoji-icon { font-size: 32px; }
-        .desktop-icon img { width: 32px; height: 32px; }
         .desktop-icon span { font-size: 11px; color: var(--primary-color); }
 
-        .menu-header {
-            width: 100%;
-            display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 20px; border-bottom: 1px solid var(--primary-color);
-            padding-bottom: 10px;
-        }
-
-        .admin-tag { font-size: 10px; letter-spacing: 2px; color: var(--primary-color); }
-
-        .max-btn {
-            width: 24px; height: 24px; border: 1px solid var(--primary-color);
-            cursor: pointer; display: flex; align-items: center; justify-content: center;
-            font-size: 14px; color: var(--primary-color);
-            border-radius: 100% !important;
-        }
-
         .menu-item {
-            width: 80%;
-            padding: 12px; font-size: 14px; color: var(--primary-color);
+            width: 80%; padding: 12px; font-size: 14px; 
+            color: var(--primary-color);
             border-bottom: 1px solid rgba(157, 0, 255, 0.1);
             border-radius: 30px !important;
             margin-bottom: 5px;
@@ -134,58 +103,63 @@
         .menu-item:hover { background: var(--primary-color); color: #000; }
     </style>
 </head>
-<body oncontextmenu="return showContextMenu(event);" onclick="hideElements();">
+<body onclick="playClick();">
 
     <div id="fps-counter">FPS: 60</div>
 
-    <!-- Desktop Icons Area -->
     <div id="desktop">
-        <!-- Icon 1: Browser -->
         <div class="desktop-icon" onclick="window.open('https://google.com', '_blank')">
-            <img src="https://www.google.com/favicon.ico">
+            <img src="https://www.google.com/favicon.ico" style="width:32px;">
             <span>Browser</span>
         </div>
-        
-        <!-- Icon 2: Grok[cite: 1] -->
         <div class="desktop-icon" onclick="window.open('https://grok.com', '_blank')">
             <div class="emoji-icon">🌙</div>
             <span>Grok</span>
         </div>
-
-
-        <!-- Icon 3: Game Jolt -->
-        <div class="desktop-icon" onclick="window.open('https://gamejolt.com', '_blank')">
-            <div class="emoji-icon">⚡</div>
-            <span>Game Jolt</span>
+        <div class="desktop-icon" onclick="window.open('/CHANGELOG.txt', '_blank')">
+            <div class="emoji-icon">📄</div>
+            <span>Changelog</span>
         </div>
-
-        <!-- Icon 4: Boredom Slasher[cite: 1] -->
-        <div class="desktop-icon" onclick="window.open('https://clicktheredbutton.com', '_blank')">
-            <div class="emoji-icon">🔁</div>
-            <span>Boredom Slasher</span>
-        </div>
-
-
-
-    <!-- 100% Rounded Start Menu[cite: 1] -->
-    <div id="start-menu">
-        <div class="menu-header">
-            <div class="admin-tag">ADMIN_ZENITH</div>
-            <div class="max-btn" onclick="toggleMaximize(event)">⛶</div>
-        </div>
-        <div class="menu-item" onclick="randomizeTheme()">Random Theme</div>
-        <div class="menu-item">Terminal</div>
-        <div class="menu-item">Settings</div>
-        <div class="menu-item" onclick="location.reload()" style="border-bottom: none; margin-top: 10px; color: #ff3366;">Restart</div>
     </div>
 
-    <!-- Gesture Pill Taskbar[cite: 1] -->
+    <div id="start-menu">
+        <a href="/CHANGELOG.txt" class="menu-item" target="_blank">changelog.txt</a>
+        <div class="menu-item" onclick="location.reload()">Restart</div>
+    </div>
+
     <div id="taskbar">
         <div id="start-button" onclick="toggleStartMenu(event)">A</div>
     </div>
 
+    <!-- Audio Engine -->
+    <audio id="snd-click" src="/sounds/click.mp3" preload="auto"></audio>
+    <audio id="snd-startup" src="/sounds/startup.mp3" preload="auto"></audio>
+
     <script>
-        // FPS Monitoring[cite: 1]
+        // System Sound Controls
+        const clickSnd = document.getElementById('snd-click');
+        const startupSnd = document.getElementById('snd-startup');
+
+        function playClick() {
+            clickSnd.currentTime = 0;
+            clickSnd.play().catch(() => {}); // Catch block handles browser autoplay restrictions
+        }
+
+        // Play startup on initial load
+        window.onload = () => {
+            startupSnd.play().catch(() => {
+                console.log("Startup audio blocked. User interaction required.");
+            });
+        };
+
+        // UI Logic[cite: 1]
+        function toggleStartMenu(e) {
+            e.stopPropagation();
+            playClick();
+            document.getElementById('start-menu').classList.toggle('active');
+        }
+
+        // FPS Logic[cite: 1]
         let lastTime = performance.now();
         let frameCount = 0;
         function updateFPS() {
@@ -199,30 +173,6 @@
             requestAnimationFrame(updateFPS);
         }
         requestAnimationFrame(updateFPS);
-
-        // Menu and System Controls[cite: 1]
-        function toggleStartMenu(e) {
-            e.stopPropagation();
-            document.getElementById('start-menu').classList.toggle('active');
-        }
-
-        function toggleMaximize(e) {
-            e.stopPropagation();
-            document.getElementById('start-menu').classList.toggle('maximized');
-        }
-
-        function hideElements() {
-            const menu = document.getElementById('start-menu');
-            menu.classList.remove('active');
-            menu.classList.remove('maximized');
-        }
-
-        function randomizeTheme() {
-            const color = '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0');
-            document.documentElement.style.setProperty('--primary-color', color);
-        }
-
-        document.getElementById('start-menu').onclick = (e) => e.stopPropagation();
     </script>
 </body>
 </html>
