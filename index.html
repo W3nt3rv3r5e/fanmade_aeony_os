@@ -52,22 +52,6 @@
             border-radius: 100% !important;
         }
 
-        /* 100% Rounded Start Menu */
-        #start-menu {
-            position: fixed; bottom: 85px; left: 50%;
-            transform: translateX(-50%) translateY(40px) scale(0.8);
-            width: 450px; height: 450px;
-            background: var(--menu-bg);
-            border: 1px solid var(--primary-color);
-            display: none; flex-direction: column;
-            padding: 60px; z-index: 1001;
-            opacity: 0;
-            border-radius: 100% !important;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
         #start-menu.active {
             display: flex; opacity: 1;
             transform: translateX(-50%) translateY(0) scale(1);
@@ -117,19 +101,11 @@
             <span>Grok</span>
         </div>
         
-    <div id="start-menu">
-        <a href="/CHANGELOG.txt" class="menu-item" target="_blank">changelog.txt</a>
-        <div class="menu-item" onclick="location.reload()">Restart</div>
-    </div>
-
     <div id="taskbar">
         <div id="start-button" onclick="toggleStartMenu(event)">A</div>
     </div>
 
-    <!-- Audio Engine -->
-    <audio id="snd-click" src="/sounds/click.mp3" preload="auto"></audio>
-    <audio id="snd-startup" src="/sounds/startup.mp3" preload="auto"></audio>
-
+    
     <script>
         // System Sound Controls
         const clickSnd = document.getElementById('snd-click');
