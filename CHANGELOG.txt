@@ -1,3 +1,4 @@
+0.0.2.4: Added links to the README for Changelog and support.
 0.0.2.3: Given an new feature: FPS counter for more better look. hope there are more contributors! :/
 0.0.2.2: Update index.html for UI enhancements and style adjustments
 0.0.2.1: Updated index.html for more fixes. more uniqueness
