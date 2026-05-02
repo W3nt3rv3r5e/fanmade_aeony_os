@@ -1,3 +1,4 @@
+0.0.2.9: Removed links to changelog and terminal items, added Terminal and Settings menu items.
 0.0.2.8: Updated icon labels for Game Jolt and Boredom Slasher. there was a bug. bug fixed
 0.0.2.7: Replaced Changelog icon with Game Jolt link and Added Boredom Slasher update. hope this keeps flowing
 0.0.2.6: Added desktop icons and improve comments in HTML
