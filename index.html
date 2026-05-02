@@ -11,6 +11,7 @@
             --menu-bg: rgba(15, 0, 30, 0.98);
         }
 
+        /* Essential Reset and High-Performance Transitions */
         * {
             cursor: url("cursor.svg"), auto !important;
             margin: 0; padding: 0; box-sizing: border-box;
@@ -63,7 +64,7 @@
             display: none; flex-direction: column;
             padding: 60px; z-index: 1001;
             opacity: 0;
-            border-radius: 100% !important; 
+            border-radius: 100% !important;
             box-shadow: 0 0 40px rgba(157, 0, 255, 0.2);
             justify-content: center;
             align-items: center;
@@ -90,6 +91,9 @@
             display: flex; flex-direction: column; align-items: center;
             justify-content: center; gap: 10px;
             border-radius: 20px !important;
+            text-decoration: none;
+            color: white;
+            cursor: pointer;
         }
 
         .desktop-icon:hover {
@@ -134,18 +138,28 @@
 
     <div id="fps-counter">FPS: 60</div>
 
+    <!-- Desktop Icons Area -->
     <div id="desktop">
+        <!-- Icon 1: Browser -->
         <div class="desktop-icon" onclick="window.open('https://google.com', '_blank')">
             <img src="https://www.google.com/favicon.ico">
             <span>Browser</span>
         </div>
+        
+        <!-- Icon 2: Grok[cite: 1] -->
         <div class="desktop-icon" onclick="window.open('https://grok.com', '_blank')">
             <div class="emoji-icon">🌙</div>
             <span>Grok</span>
         </div>
+
+        <!-- Icon 3: Changelog[cite: 1] -->
+        <div class="desktop-icon" onclick="window.open('/CHANGELOG.txt', '_blank')">
+            <div class="emoji-icon">📄</div>
+            <span>Changelog</span>
+        </div>
     </div>
 
-    <!-- 100% Rounded Start Menu -->
+    <!-- 100% Rounded Start Menu[cite: 1] -->
     <div id="start-menu">
         <div class="menu-header">
             <div class="admin-tag">ADMIN_ZENITH</div>
@@ -153,20 +167,20 @@
         </div>
         <div class="menu-item" onclick="randomizeTheme()">Random Theme</div>
         
-        <!-- Changelog Integration -->
-        <a href="/CHANGELOG.txt" class="menu-item" target="_blank">changelog.txt</a>
+        <a href="/CHANGELOG.txt" class="menu-item" target="_blank">changelog.txt</a>[cite: 1]
         
         <div class="menu-item">Terminal.exe</div>
         <div class="menu-item">System Monitor</div>
         <div class="menu-item" onclick="location.reload()" style="border-bottom: none; margin-top: 10px; color: #ff3366;">Restart</div>
     </div>
 
-    <!-- Gesture Pill Taskbar -->
+    <!-- Gesture Pill Taskbar[cite: 1] -->
     <div id="taskbar">
         <div id="start-button" onclick="toggleStartMenu(event)">A</div>
     </div>
 
     <script>
+        // FPS Monitoring[cite: 1]
         let lastTime = performance.now();
         let frameCount = 0;
         function updateFPS() {
@@ -181,6 +195,7 @@
         }
         requestAnimationFrame(updateFPS);
 
+        // Menu and System Controls[cite: 1]
         function toggleStartMenu(e) {
             e.stopPropagation();
             document.getElementById('start-menu').classList.toggle('active');
