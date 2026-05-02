@@ -1,3 +1,4 @@
+0.0.3.1: Deleted sounds/DISCLAIMER.md. for more suiting-ness
 0.0.3.0: Added the sounds folder for more professionalism
 0.0.2.9: Removed links to changelog and terminal items, added Terminal and Settings menu items.
 0.0.2.8: Updated icon labels for Game Jolt and Boredom Slasher. there was a bug. bug fixed
