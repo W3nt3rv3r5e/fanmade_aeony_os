@@ -12,8 +12,7 @@ AeonyOS brings a modern cyberpunk aesthetic with smooth interactions, draggable 
 - Draggable and minimizable windows
 - Working Start Menu with app launcher
 - Right-click Context Menu
-- Custom rodless "Moga" cursor
-- Double-click "BOOM!" celebration effect
+- Rodless cursor
 - Modular and clean codebase
 
 ### 🚀 How to Run
