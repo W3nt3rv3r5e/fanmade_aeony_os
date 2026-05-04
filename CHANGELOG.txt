@@ -1,3 +1,4 @@
+0.0.4.0: Add credits link to README.md
 0.0.3.9: Added ezploerer icon to the index.html
 0.0.3.8: Updated styles and layout for the AeonyOS interface, including changes to colors, cursor, and desktop icons. Improved functionality for opening apps and handling messages from the Settings App.
 0.0.3.7: Simplify cursor description in README. Remove unnecessary closing div tag in index.html Update title and add Fancade link in index.html
