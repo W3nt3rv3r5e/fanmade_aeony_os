@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            background: #0a0a0a; color: white;
+            font-family: sans-serif; padding: 20px;
+        }
+        .card {
+            background: #151515; border: 1px solid #333;
+            padding: 15px; border-radius: 10px; margin-bottom: 10px;
+        }
+        button {
+            background: #9d00ff; border: none; color: white;
+            padding: 8px 15px; border-radius: 5px; cursor: pointer;
+        }
+        .back-btn { margin-bottom: 20px; display: inline-block; color: #9d00ff; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="back-btn" onclick="window.parent.postMessage({type: 'CLOSE'}, '*')">← Back to Desktop</div>
+    
+    <h2>System Settings</h2>
+    
+    <div class="card">
+        <p>Theme Accent</p>
+        <input type="color" id="accent" onchange="updateColor(this.value)" value="#9d00ff">
+    </div>
+
+    <div class="card">
+        <p>Wallpapers</p>
+        <button onclick="updateBG('#000000')">Deep Black</button>
+        <button onclick="updateBG('linear-gradient(45deg, #0f0020, #000000)')">Midnight Purple</button>
+    </div>
+
+    <script>
+        function updateColor(val) {
+            // Send color to parent index.html
+            window.parent.postMessage({type: 'SET_COLOR', value: val}, '*');
+        }
+        function updateBG(val) {
+            // Send BG to parent index.html
+            window.parent.postMessage({type: 'SET_BG', value: val}, '*');
+        }
+    </script>
+</body>
+</html>
