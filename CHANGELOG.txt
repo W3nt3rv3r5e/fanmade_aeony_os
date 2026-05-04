@@ -1,5 +1,4 @@
-0.0.3.7.5: Update title and add Fancade link in index.html
-0.0.3.7: Simplify cursor description in README
+0.0.3.7: Simplify cursor description in README. Remove unnecessary closing div tag in index.html Update title and add Fancade link in index.html
 0.0.3.6: Added new desktop icon for W3nt3rv3r5e website
 0.0.3.5: Removed the start menu and associated audio elements from the HTML. becayse there was a bug
 0.0.3.4: Removed desktop icon for Changelog and adjusted layout.
