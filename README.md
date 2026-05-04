@@ -17,7 +17,7 @@ AeonyOS brings a modern cyberpunk aesthetic with smooth interactions, draggable 
 
 ### 🚀 How to Run
 1. Download the ZIP on releases tab
-2. Extract the files to any folder
+2. Extract the file downloaded now to any folder you want
 3. Open `index.html` in your favorite browser
 
 **No installation required.**
