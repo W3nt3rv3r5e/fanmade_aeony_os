@@ -41,6 +41,7 @@ Links:
 - [Support our Game Jolt](https://gamejolt.com/@wenterverse)
 - [Support our Geometry Dash](https://gdbrowser.com/u/RobertPlayz777)
 - [Visit our Fan-made OS for better view](https://w3nt3rv3r5e.github.io/fanmade_aeony_os/)
+- [Show credits](https://github.com/W3nt3rv3r5e/fanmade_aeony_os/blob/main/CREDITS.txt)
 ---
 
 ### How To Interact with No Downloading
