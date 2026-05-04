@@ -37,14 +37,8 @@ Made with passion by **CTRP** — Cool Tough Real Player.(W3nt3rv3r5e)
 ---
 
 Links:
-- [View the Changelog](https://github.com/W3nt3rv3r5e/fanmade_aeony_os/blob/main/CHANGELOG.txt)
 - [Support our Game Jolt](https://gamejolt.com/@wenterverse)
 - [Support our Geometry Dash](https://gdbrowser.com/u/RobertPlayz777)
-- [Visit our Fan-made OS for better view](https://w3nt3rv3r5e.github.io/fanmade_aeony_os/)
-- [Show credits](https://github.com/W3nt3rv3r5e/fanmade_aeony_os/blob/main/CREDITS.txt)
 ---
-
-### How To Interact with No Downloading
-1. Get your favorite PC browser.
-2. Then on the url bar. paste **https://w3nt3rv3r5e.github.io/fanmade_aeony_os/**. this is the important part. and.
-3. KABOOM! Unlocked a concepual operating system
+# Final Message
+### The files on repository. except for the quintuplets showing introduction. is deleted. Site unpublished. moving to release assets. Because these files may feel cluttered and slow
