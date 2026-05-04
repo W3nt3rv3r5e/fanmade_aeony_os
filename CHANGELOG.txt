@@ -1,3 +1,4 @@
+0.0.4.3: Add W3nt3rv3r5e desktop icon with link
 0.0.4.2: Integrated Virtual Storage Logic Drive Serial Numbering (AEON-9902-X)
 0.0.4.1: Created apps/explorer.html with simulation
 0.0.4.0: Add credits link to README.md
