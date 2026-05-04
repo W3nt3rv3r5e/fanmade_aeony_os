@@ -3,155 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <title>AeonyOS</title>
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <style>
         :root {
-            --primary-color: #9d00ff; /* Neon Violet */
-            --bg-color: #0a0015;
-            --menu-bg: rgba(15, 0, 30, 0.98);
+            --primary-color: #9d00ff;
+            --bg-color: #000000; /* Pure Black */
         }
 
         * {
-            cursor: url("cursor.svg"), auto !important;
             margin: 0; padding: 0; box-sizing: border-box;
             user-select: none;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            /* Restore Custom Cursor */
+            cursor: url("assets/cursor.svg"), auto !important;
         }
 
         body {
             width: 100vw; height: 100vh; overflow: hidden;
-            background: linear-gradient(135deg, #0f0020 0%, #000000 100%);
+            background: var(--bg-color);
             color: white; font-family: 'Segoe UI', sans-serif;
         }
 
-        #fps-counter {
-            position: fixed; top: 10px; right: 10px;
-            color: var(--primary-color); font-family: monospace;
-            font-size: 12px; z-index: 9999;
-            background: rgba(0,0,0,0.5); padding: 4px 8px;
-            border: 1px solid var(--primary-color);
+        /* Desktop Layout */
+        #desktop { 
+            height: calc(100vh - 60px); padding: 30px; 
+            display: flex; flex-wrap: wrap; align-content: flex-start; gap: 25px;
         }
-
-        /* Gesture Pill Taskbar */
-        #taskbar {
-            position: fixed; bottom: 20px; left: 50%;
-            transform: translateX(-50%);
-            height: 50px; min-width: 120px;
-            background: rgba(10, 0, 20, 0.9);
-            border: 1px solid var(--primary-color);
-            display: flex; align-items: center; justify-content: center;
-            padding: 0 20px; z-index: 1000;
-            border-radius: 100px !important;
-        }
-
-        #start-button {
-            width: 36px; height: 36px;
-            border: 1px solid var(--primary-color);
-            display: flex; justify-content: center; align-items: center;
-            font-weight: bold;
-            border-radius: 100% !important;
-        }
-
-        #start-menu.active {
-            display: flex; opacity: 1;
-            transform: translateX(-50%) translateY(0) scale(1);
-        }
-
-        #desktop { height: 100vh; padding: 40px; display: flex; gap: 30px; }
 
         .desktop-icon {
-            width: 90px; height: 95px;
+            width: 90px; height: 100px;
             display: flex; flex-direction: column; align-items: center;
-            justify-content: center; gap: 10px;
-            border-radius: 20px !important;
+            justify-content: center; gap: 8px;
+            border-radius: 15px; transition: 0.3s;
         }
 
-        .desktop-icon:hover {
-            background: rgba(157, 0, 255, 0.1);
+        .desktop-icon:hover { background: rgba(157, 0, 255, 0.2); }
+        .emoji-icon { font-size: 35px; }
+        .desktop-icon span { font-size: 12px; font-weight: 500; }
+
+        /* Window System */
+        .window {
+            position: absolute; top: 50px; left: 50px;
+            width: 80%; height: 70%;
+            background: rgba(10, 0, 20, 0.95);
             border: 1px solid var(--primary-color);
+            border-radius: 12px; display: none; flex-direction: column;
+            box-shadow: 0 0 30px rgba(157, 0, 255, 0.3);
+            z-index: 100;
         }
 
-        .emoji-icon { font-size: 32px; }
-        .desktop-icon span { font-size: 11px; color: var(--primary-color); }
-
-        .menu-item {
-            width: 80%; padding: 12px; font-size: 14px; 
-            color: var(--primary-color);
-            border-bottom: 1px solid rgba(157, 0, 255, 0.1);
-            border-radius: 30px !important;
-            margin-bottom: 5px;
-            text-decoration: none;
-            display: block;
+        .window.active { display: flex; }
+        .window-header {
+            padding: 10px 15px; background: rgba(157, 0, 255, 0.1);
+            display: flex; justify-content: space-between; align-items: center;
         }
-        
-        .menu-item:hover { background: var(--primary-color); color: #000; }
+
+        .close-btn { color: #ff4444; cursor: pointer; font-weight: bold; }
+        iframe { border: none; flex-grow: 1; border-radius: 0 0 12px 12px; }
+
+        /* Taskbar */
+        #taskbar {
+            position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%);
+            height: 50px; width: 300px;
+            background: rgba(15, 15, 15, 0.9);
+            border: 1px solid var(--primary-color);
+            border-radius: 25px; display: flex; align-items: center;
+            justify-content: space-around; z-index: 1000;
+        }
     </style>
 </head>
-<body onclick="playClick();">
-
-    <div id="fps-counter">FPS: 60</div>
+<body>
 
     <div id="desktop">
-        <div class="desktop-icon" onclick="window.open('https://google.com', '_blank')">
-            <img src="https://www.google.com/favicon.ico" style="width:32px;">
-            <span>Browser</span>
-        </div>
-        <div class="desktop-icon" onclick="window.open('https://grok.com', '_blank')">
+        <div class="desktop-icon" onclick="openApp('Grok', 'https://grok.com')">
             <div class="emoji-icon">🌙</div>
             <span>Grok</span>
         </div>
-         <div class="desktop-icon" onclick="window.open('https://w3nt3rv3r5e.github.io/W3nt3rv3r5e/', '_blank')">
+        <div class="desktop-icon" onclick="openApp('Game Jolt', 'https://gamejolt.com')">
             <div class="emoji-icon">⚡</div>
-            <span>Our Website</span>
-         </div>
-         <div class="desktop-icon" onclick="window.open('https://play.fancade.com', '_blank')">
-            <div class="emoji-icon">👾</div>
-            <span>Fancade</span>
-         </div>
-        
-    <div id="taskbar">
-        <div id="start-button" onclick="toggleStartMenu(event)">A</div>
+            <span>Game Jolt</span>
+        </div>
+        <div class="desktop-icon" onclick="openApp('Settings', 'apps/settings.html')">
+            <div class="emoji-icon">⚙️</div>
+            <span>Settings</span>
+        </div>
     </div>
 
-    
+    <div id="app-window" class="window">
+        <div class="window-header">
+            <span id="window-title">App</span>
+            <span class="close-btn" onclick="closeApp()">✕</span>
+        </div>
+        <iframe id="app-frame" src=""></iframe>
+    </div>
+
+    <div id="taskbar">
+        <div onclick="location.reload()" style="cursor:pointer">🌀</div>
+        <div onclick="closeApp()" style="cursor:pointer">🏠</div>
+    </div>
+
     <script>
-        // System Sound Controls
-        const clickSnd = document.getElementById('snd-click');
-        const startupSnd = document.getElementById('snd-startup');
-
-        function playClick() {
-            clickSnd.currentTime = 0;
-            clickSnd.play().catch(() => {}); // Catch block handles browser autoplay restrictions
+        function openApp(name, url) {
+            document.getElementById('window-title').innerText = name;
+            document.getElementById('app-frame').src = url;
+            document.getElementById('app-window').classList.add('active');
         }
 
-        // Play startup on initial load
-        window.onload = () => {
-            startupSnd.play().catch(() => {
-                console.log("Startup audio blocked. User interaction required.");
-            });
-        };
-
-        // UI Logic[cite: 1]
-        function toggleStartMenu(e) {
-            e.stopPropagation();
-            playClick();
-            document.getElementById('start-menu').classList.toggle('active');
+        function closeApp() {
+            document.getElementById('app-window').classList.remove('active');
+            document.getElementById('app-frame').src = '';
         }
 
-        // FPS Logic[cite: 1]
-        let lastTime = performance.now();
-        let frameCount = 0;
-        function updateFPS() {
-            frameCount++;
-            const now = performance.now();
-            if (now - lastTime >= 1000) {
-                document.getElementById('fps-counter').innerText = `FPS: ${frameCount}`;
-                frameCount = 0;
-                lastTime = now;
+        // Feature: Listen for messages from the Settings App
+        window.addEventListener('message', (event) => {
+            if (event.data.type === 'SET_COLOR') {
+                document.documentElement.style.setProperty('--primary-color', event.data.value);
             }
-            requestAnimationFrame(updateFPS);
-        }
-        requestAnimationFrame(updateFPS);
+            if (event.data.type === 'SET_BG') {
+                document.body.style.background = event.data.value;
+            }
+        });
     </script>
 </body>
 </html>
